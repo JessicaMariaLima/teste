@@ -13,6 +13,7 @@ const server = express()
  
 //configurando mustache
 server.set('view engine','mustache')
+
 //configurando o caminho da pasta views
 server.set('views',path.join(__dirname,'views'))
 server.engine('mustache',mustache())
@@ -20,6 +21,10 @@ server.engine('mustache',mustache())
 //configurando o caminho da pasta public
 server.use(express.static(path.join(__dirname,'../public')))
  
+// Configurando o protocolo POST
+server.use(express.urlencoded({extended:true}))
+
+
 server.use(mainRoutes)
  
 //criando a página não encontrada

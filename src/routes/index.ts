@@ -31,15 +31,19 @@ router.get("/", (req, res) => {
     if (age >= 18) {
         showAge = true
     }
-    res.render('home', {
+    res.render('pages/home', {
         name: 'João',
         lastName: 'Silva',
         age: 20,
         showAge,
         produtos: [
-            {titulo: 'Produto x', Preco: 200},
-            {titulo: 'Produto y', Preco: 290},
-            {titulo: 'Produto Z', Preco: 450},
+            { titulo: 'Produto x', Preco: 200 },
+            { titulo: 'Produto y', Preco: 290 },
+            { titulo: 'Produto Z', Preco: 450 },
+
+        ],
+
+        frases: ["Frase 1", "Frase 2", "Frase 3"
 
         ]
 
@@ -52,14 +56,67 @@ router.get("/", (req, res) => {
 // })
 
 router.get('/sobre', (req: Request, res: Response) => {
-    res.render('about')
+    res.render('pages/about')
 
 })
+
+
+
 
 router.get('/contato', (req: Request, res: Response) => {
     res.send("Contato = 11 9588-5222")
 })
 
+router.get('/nome', (req: Request, res: Response) => {
+
+
+    let nome: string = req.query.nome as string
+    let idade: any = req.query.idade as any
+    let contato: any = req.query.contato as any
+    let endereco: string = req.query.endereco as string
+
+    res.render('pages/nome', {
+        nome,
+        idade,
+        contato,
+        endereco
+    })
+})
+
+
+
+// Página Idade
+
+router.get('/age', (req: Request, res: Response) => {
+    res.render('pages/age')
+})
+
+
+router.post('/age', (req: Request, res: Response) => {
+
+    let age: any = req.body.age as any
+
+    res.render('pages/age', {
+        age,
+    })
+
+})
+
+
+//Página de login
+
+router.get('/login', (req: Request, res: Response) => {
+    res.render('pages/login')
+
+})
+
+router.post('/login', (req: Request, res: Response) => {
+    res.render('pages/login', {
+
+        usuario,
+        password        
+    })
+})
 
 
 

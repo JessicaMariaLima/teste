@@ -1,0 +1,21 @@
+{{>partials/header}}
+
+<h1> Quantos anos você tem? </h1>
+
+
+<form method="POST">
+ <input type="text" name="age" placeholder="Digite o sua idade"/><br>
+
+  <input type="submit" value="Enviar"/><br>
+
+</form>
+
+
+
+{{#age}}
+
+Sua idade é : {{age}}
+
+{{/age}}
+
+{{>partials/footer}}
