@@ -5,8 +5,11 @@ import path from 'path';
 import mustache from 'mustache-express';
 // importando nosso arquivo index
 import mainRoutes from './routes/index'
+import dotenv from 'dotenv';
 
 
+//usando dotenv
+dotenv.config()
 
 //usando EXPRESS
 const server = express()
@@ -33,4 +36,4 @@ server.use((req:Request, res: Response) =>{
 })
  
 //gerando o servidor na porta 3000
-server.listen(2000)
+server.listen(process.env.PORT)

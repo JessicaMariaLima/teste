@@ -1,6 +1,9 @@
+import { info } from 'console'
 import express, { Router, Request, Response } from 'express'
 import { request, Server } from 'http'
-
+import * as homeController from '../controllers/homeController'
+import * as infoController from '../controllers/infoController'
+import * as userController from '../controllers/userController'
 const router = Router()
 
 //criando a primeira rota
@@ -8,115 +11,30 @@ const router = Router()
 //     res.send("Olá Mundo!")
 // })
 
-router.get("/", (req, res) => {
+router.get("/",homeController.home) 
 
-    //    let user = {
-    //         name: 'José',
-    //         age: 28,
-    //         showWelcome : true
-    //    }
+router.get('/sobre',infoController.contato) 
 
+router.get('/contato', infoController.sobre) 
 
-    // res.render('home',{
-    //     name: 'João',
-    //     lastName:'Silva',
-    //     age: 20,
-    //     showWelcome : true
-    // })
+router.get('/nome', userController.nome)
 
-    let age: number = 20;
-    let showAge: boolean = false;
+router.get('/age', userController.age)
 
 
-    if (age >= 18) {
-        showAge = true
-    }
-    res.render('pages/home', {
-        name: 'João',
-        lastName: 'Silva',
-        age: 20,
-        showAge,
-        produtos: [
-            { titulo: 'Produto x', Preco: 200 },
-            { titulo: 'Produto y', Preco: 290 },
-            { titulo: 'Produto Z', Preco: 450 },
-
-        ],
-
-        frases: ["Frase 1", "Frase 2", "Frase 3"
-
-        ]
-
-    })
-})
-// let user : string = "Jess Lima"
-
-// router.get('/contato', (req: Request, res: Response) =>{
-//     res.send("Esta é a página de contato")
-// })
-
-router.get('/sobre', (req: Request, res: Response) => {
-    res.render('pages/about')
-
-})
-
-
-
-
-router.get('/contato', (req: Request, res: Response) => {
-    res.send("Contato = 11 9588-5222")
-})
-
-router.get('/nome', (req: Request, res: Response) => {
-
-
-    let nome: string = req.query.nome as string
-    let idade: any = req.query.idade as any
-    let contato: any = req.query.contato as any
-    let endereco: string = req.query.endereco as string
-
-    res.render('pages/nome', {
-        nome,
-        idade,
-        contato,
-        endereco
-    })
-})
-
-
-
-// Página Idade
-
-router.get('/age', (req: Request, res: Response) => {
-    res.render('pages/age')
-})
-
-
-router.post('/age', (req: Request, res: Response) => {
-
-    let age: any = req.body.age as any
-
-    res.render('pages/age', {
-        age,
-    })
-
-})
-
-
+router.post('/age', userController.ageResult) 
 //Página de login
 
-router.get('/login', (req: Request, res: Response) => {
-    res.render('pages/login')
+// router.get('/login', (req: Request, res: Response) => {
+//     res.render('pages/login')
 
-})
+// })
 
-router.post('/login', (req: Request, res: Response) => {
-    res.render('pages/login', {
+// router.post('/login', (req: Request, res: Response) => {
+//     res.render('pages/login')
 
-        usuario,
-        password        
-    })
-})
+    
+// })
 
 
 
